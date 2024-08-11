@@ -3,6 +3,7 @@ import './App.css';
 import { useState } from 'react';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
+import ContactForm from './components/ContactForm/ContactForm';
 import contactsData from './contacts.json';
 
 function App() {
@@ -17,12 +18,15 @@ function App() {
     contact.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  console.log(contacts); // Перевірте, що контакти коректно імплементовані
+  const handleAddContact = (newContact) => {
+    setContacts((prevContacts) => [...prevContacts, newContact]);
+  };
 
   return (
     <>
       <div>
         <h1>Phonebook</h1>
+        <ContactForm onAddContact={handleAddContact} />
         <SearchBox value={searchQuery} onChange={handleSearchChange} />
         <ContactList contacts={filteredContacts} />
       </div>
