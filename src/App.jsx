@@ -14,6 +14,9 @@ function App() {
     setSearchQuery(query);
   };
 
+  const handleDeleteContact = (id) => {
+    setContacts((prevContacts) => prevContacts.filter(contact => contact.id !== id));
+  };
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -28,7 +31,7 @@ function App() {
         <h1>Phonebook</h1>
         <ContactForm onAddContact={handleAddContact} />
         <SearchBox value={searchQuery} onChange={handleSearchChange} />
-        <ContactList contacts={filteredContacts} />
+        <ContactList contacts={filteredContacts} onDeleteContact={handleDeleteContact}  />
       </div>
     </>
   );

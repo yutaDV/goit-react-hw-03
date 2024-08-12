@@ -2,7 +2,7 @@ import css from './Contact.module.css';
 import PhoneIcon from '@mui/icons-material/Phone';
 import Person   from '@mui/icons-material/Person';
 
-const Contact = ({name, number}) => {
+const Contact = ({name, number, onDelete }) => {
     return (
         <div className={css.contact}>
             <div>
@@ -10,7 +10,7 @@ const Contact = ({name, number}) => {
             <p className={css.numberContact}> <PhoneIcon /> {number}</p>
             </div>
             <div className={css.buttonContainer}>
-                <button className={css.button}>Delete</button>
+                <button className={css.button} onClick={onDelete}>Delete</button>
             </div>
 </div>
     )

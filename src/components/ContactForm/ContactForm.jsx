@@ -11,7 +11,7 @@ const validationSchema = Yup.object({
   number: Yup.string()
     .min(3, 'Number must be at least 3 characters')
     .max(50, 'Number cannot exceed 50 characters')
-    .required('Number is required'),
+    .required('required'),
 });
 
 const ContactForm = ({ onAddContact }) => {
