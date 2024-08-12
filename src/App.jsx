@@ -1,6 +1,6 @@
 
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect  } from 'react';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactForm from './components/ContactForm/ContactForm';
@@ -10,6 +10,22 @@ function App() {
   const [contacts, setContacts] = useState(contactsData);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const saveContactsToLocalStorage = (contacts) => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  };
+
+  const loadContactsFromLocalStorage = () => {
+    const storedContacts = localStorage.getItem('contacts');
+    return storedContacts ? JSON.parse(storedContacts) : contactsData;
+  };
+  useEffect(() => {
+    const initialContacts = loadContactsFromLocalStorage();
+    setContacts(initialContacts);
+  }, []);
+
+  useEffect(() => {
+    saveContactsToLocalStorage(contacts);
+  }, [contacts]);
   const handleSearchChange = (query) => {
     setSearchQuery(query);
   };
